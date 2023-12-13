@@ -1,5 +1,60 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<h2>this is the home page</h2>
+<div class="content-section">
+    <form method="POST" action>
+        {{ form.hidden_tag() }}
+
+        <fieldset>
+            <legend>Shorten Your URL</legend>
+            <!-- LONG URL -->
+            <div class="form-group">
+                {{form.long_url.label}}
+                {% if form.long_url.errors %}
+                {{ form.long_url(class = "form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.long_url(class = "form-control form-control-lg") }}
+                {% endif %}
+
+            </div>
+
+            <!-- Allias URL -->
+            <div class="form-group">
+                {{form.allias.label}}
+                {% if form.allias.errors %}
+                {{ form.allias(class = "form-control form-control-lg is-invalid") }}
+                <div class="invalid-feedback">
+                    {% for error in errors %}
+                    <span>{{error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.allias(class = "form-control form-control-lg") }}
+                {% endif %}
+            </div>
+            <!-- RECAPTCHA -->
+            <!-- <div class="form-group">
+                {{form.recaptcha}}
+            </div> -->
+            <!-- SUBMIT -->
+            <div class="form-group">
+                {{ form.submit(class = "btn btn-outline-info") }}
+            </div>
+            <!-- OUTPUT -->
+            <div class="form-group">
+                Here is the label
+                <div class="form-control form-control-lg">
+                    Here is your New URL
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div>
+
 {% endblock content%}
