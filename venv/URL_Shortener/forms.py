@@ -5,7 +5,7 @@ from wtforms.validators import DataRequired, Length
 
 
 class URL_Form(FlaskForm):
-    long_url = StringField("Enter Long URL", validators = [DataRequired(), Length(min = 1, max = 300)])
+    long_URL = StringField("Enter Long URL", validators = [DataRequired(), Length(min = 1, max = 300)])
 
     allias = StringField("Enter Allias", validators = [DataRequired(), Length(min = 1, max = 20)])
     
