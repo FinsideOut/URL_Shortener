@@ -9,6 +9,6 @@ class URL_Form(FlaskForm):
 
     allias = StringField("Enter Allias", validators = [DataRequired(), Length(min = 1, max = 20)])
     
-    # recaptcha = RecaptchaField()
+    recaptcha = RecaptchaField()
 
     submit = SubmitField("Get URL")

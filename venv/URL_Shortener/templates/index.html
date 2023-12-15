@@ -1,65 +1,68 @@
 {% extends "layout.html" %}
 
 {% block content %}
+<div class="col">
+    <div class="content-section">
+        <form method="POST" action>
+            {{ form.hidden_tag() }}
 
-<div class="content-section">
-    <form method="POST" action>
-        {{ form.hidden_tag() }}
-
-        <fieldset>
-            <legend>Shorten Your URL</legend>
-            <!-- LONG URL -->
-            <div class="form-group">
-                {{form.long_URL.label}}
-                {% if form.long_URL.errors %}
-                {{ form.long_URL(class = "form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in errors %}
-                    <span>{{error}}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.long_URL(class = "form-control form-control-lg") }}
-                {% endif %}
-
-            </div>
-
-            <!-- Allias URL -->
-            <div class="form-group">
-                {{form.allias.label}}
-                {% if form.allias.errors %}
-                {{ form.allias(class = "form-control form-control-lg is-invalid") }}
-                <div class="invalid-feedback">
-                    {% for error in errors %}
-                    <span>{{error}}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.allias(class = "form-control form-control-lg") }}
-                {% endif %}
-            </div>
-            <!-- RECAPTCHA -->
-            <!-- <div class="form-group">
-                {{form.recaptcha}}
-            </div> -->
-            <!-- SUBMIT -->
-            <div class="form-group">
-                {{ form.submit(class = "btn btn-outline-info") }}
-            </div>
-            <!-- OUTPUT -->
-            <div class="form-group">
-                Here is the label
-                <div class="form-control form-control-lg">
-                    {% if short_url %}
-                    {{short_url}}
+            <fieldset>
+                <legend>Shorten Your URL</legend>
+                <!-- LONG URL -->
+                <div class="form-group">
+                    {{form.long_URL.label}}
+                    {% if form.long_URL.errors %}
+                    {{ form.long_URL(class = "form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in errors %}
+                        <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
                     {% else %}
-                    Here is your New URL
+                    {{ form.long_URL(class = "form-control form-control-lg") }}
+                    {% endif %}
+
+                </div>
+
+                <!-- Allias URL -->
+                <div class="form-group">
+                    {{form.allias.label}}
+                    {% if form.allias.errors %}
+                    {{ form.allias(class = "form-control form-control-lg is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in errors %}
+                        <span>{{error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.allias(class = "form-control form-control-lg") }}
                     {% endif %}
                 </div>
-            </div>
+                <!-- RECAPTCHA -->
+                <div class="form-group">
+                    {{form.recaptcha}}
+                </div>
+                <!-- SUBMIT -->
+                <div class="form-group">
+                    {{ form.submit(class = "btn btn-outline-info") }}
+                </div>
+                <!-- OUTPUT -->
+                <div class="form-group">
+                    Here is the label
+                    <div class="form-control form-control-lg">
+                        {% if short_url %}
+                        {{short_url}}
+                        {% else %}
+                        Here is your New URL
+                        {% endif %}
+                    </div>
+                </div>
 
-        </fieldset>
-    </form>
+            </fieldset>
+        </form>
+    </div>
 </div>
-
+<div class="col">
+    <!-- user register form here -->
+</div>
 {% endblock content%}

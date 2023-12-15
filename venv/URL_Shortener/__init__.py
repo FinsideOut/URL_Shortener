@@ -1,10 +1,12 @@
 import os
+from openai import OpenAI
 from flask import Flask
 from URL_Shortener import forms
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = "36a9c6555aab50f80218b5b516257036"
+gpt_client = OpenAI()
 
 #chatGPT is the fucking BOMB
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///" + os.path.join(os.path.abspath(os.path.dirname(__file__)), "test.db")
