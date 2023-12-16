@@ -11,6 +11,12 @@ class URL(db.Model):
 
     def __repr__(self):
         return f"{self.URL_id}, {self.long_URL}, {self.allias}, {self.short_URL}, {self.date_added}, {self.user_id}"
-
+    
+class User(db.Model):
+    user_id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(20), unique = True, nullable = False)
+    email = db.Column(db.String(120), unique = True, nullable = False)
+    password = db.Column(db.String(60), nullable = False)
+    urls = db.relationship("URL", backref = "owner", lazy = True)
     
 

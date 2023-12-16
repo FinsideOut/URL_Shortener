@@ -1,7 +1,6 @@
 import os
 from openai import OpenAI
 from flask import Flask
-from URL_Shortener import forms
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)

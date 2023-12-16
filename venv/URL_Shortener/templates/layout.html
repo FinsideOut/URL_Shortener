@@ -15,22 +15,111 @@
         </title>
     </head>
     <body>
-        <div class="row">
-            <div class="col">
-                {% with messages = get_flashed_messages(with_categories = true) %}
-                {% if messages %}
-                {% for category, message in messages %}
-                <div class="alert alert-{{category}}">
-                    {{ message }}
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 mb-3">
+            <div class="container">
+                <a class="navbar-brand" href="#">TempURL</a>
+                <!-- button below is for mobile responsiveness, adds burger -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <!-- below might seem like overkill but allows button above to work -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Log In</a>
+                        </li>
+                    </ul>
                 </div>
-                {% endfor %}
-                {% endif %}
-                {% endwith %}
             </div>
-        </div>
-        <div class="row">
-            {% block content %}
-            {% endblock %}
+        </nav>
+        <div class="container">
+            <!-- for testing purposes -->
+            <div class="row">
+                <div class="col">
+                    {% with messages = get_flashed_messages(with_categories = true) %}
+                    {% if messages %}
+                    {% for category, message in messages %}
+                    <div class="alert alert-{{category}}">
+                        {{ message }}
+                    </div>
+                    {% endfor %}
+                    {% endif %}
+                    {% endwith %}
+                </div>
+            </div>
+
+            <!-- MAIN GRID -->
+            <div class="row">
+                <div class="col text-light bg-dark pd-3">
+                    <form method="POST" action>
+                        {{ form.hidden_tag() }}
+                        <fieldset class="p-3">
+                            <legend>Shorten Your URL</legend>
+                            <p class="mb-3">Sum up the website in one key word (alias)</p>
+                            <!-- LONG URL -->
+                            <div class="form-group mb-3">
+                                <!-- {{form.long_URL.label}} -->
+                                {% if form.long_URL.errors %}
+                                {{ form.long_URL(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.long_URL.errors %}
+                                    <span>{{error}}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.long_URL(class = "form-control form-control-lg bg-dark text-light", placeholder = "Long URL") }}
+                                {% endif %}
+
+                            </div>
+
+                            <!-- Allias URL -->
+                            <div class="form-group mb-3">
+                                <!-- {{form.allias.label}} -->
+                                {% if form.allias.errors %}
+                                {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.allias.errors %}
+                                    <span>{{error}}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.allias(class = "form-control form-control-lg bg-dark text-light", placeholder = "Alias Here") }}
+                                {% endif %}
+                            </div>
+                            <!-- RECAPTCHA -->
+                            <div class="row align-items-center mb-3">
+                                <div class="col form-group text-center">
+                                    {{ form.submit(class = "btn btn-outline-light") }}
+                                </div>
+                                <!-- SUBMIT -->
+                                <div class="col form-group text-center">
+                                    {{form.recaptcha}}
+                                </div>
+                            </div>
+
+                            <!-- OUTPUT -->
+                            <div class="form-group">
+                                <div class="form-control form-control-lg bg-dark text-light">
+                                    {% if short_url %}
+                                    {{short_url}}
+                                    {% else %}
+                                    Short URL
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+
+                </div>
+                <div class="col align-self-center text-center">
+
+                    <h2>{{quote}} Test</h2>
+                    <h3>{{author}} Test</h3>
+
+                </div>
+            </div>
         </div>
 
         <!-- boostrap -->
