@@ -1,0 +1,87 @@
+ <!-- SIGN UP Modal -->
+<div class="modal fade" id="createAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- Edit from here -->
+        <div class="modal-content text-light bg-dark">
+            <div class="modal-body">
+                <form method="POST" action>
+                    {{ register_form.hidden_tag() }}
+                    <fieldset class="p-3">
+                        <legend>Create an Account</legend>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, ipsum. Molestiae recusandae alias quasi architecto.</p>
+
+                        <!-- username -->
+                        <div class="form-group mb-3">
+                            {% if register_form.username.errors %}
+                            {{ register_form.username(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                            <div class="invalid-feedback">
+                                {% for error in register_form.username.errors %}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ register_form.username(class = "form-control form-control-lg bg-dark text-light", placeholder = "Username") }}
+                            {% endif %}
+                        </div>
+
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            {% if register_form.email.errors %}
+                            {{ register_form.email(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                            <div class="invalid-feedback">
+                                {% for error in register_form.email.errors %}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ register_form.email(class = "form-control form-control-lg bg-dark text-light", placeholder = "Email") }}
+                            {% endif %}
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group mb-3">
+                            {% if register_form.password.errors %}
+                            {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                            <div class="invalid-feedback">
+                                {% for error in register_form.password.errors %}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ register_form.password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Password") }}
+                            {% endif %}
+                        </div>
+
+                        <!-- Confirm Password -->
+                        <div class="form-group mb-3">
+                            {% if register_form.confirm_password.errors %}
+                            {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                            <div class="invalid-feedback">
+                                {% for error in register_form.confirm_password.errors %}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ register_form.confirm_password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Confirm Password") }}
+                            {% endif %}
+                        </div>
+
+                        <!-- SUBMIT -->
+
+                        <div class="from-group text-center mb-3">
+                            {{register_form.submit(class = "btn btn-outline-light")}}
+                        </div>
+                        <hr class="my-4">
+                        <div class="form-group align-items-center text-center mb-3">
+                            <p class="mb-3">Already have an account?</p>
+                            <button type="button" class="btn btn-outline-light">Log in</button>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

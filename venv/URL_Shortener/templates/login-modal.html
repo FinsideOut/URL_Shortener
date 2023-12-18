@@ -1,0 +1,62 @@
+<!-- LOGIN Modal -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <!-- Edit from here -->
+        <div class="modal-content text-light bg-dark">
+            <div class="modal-body">
+                <form method="POST" action>
+                    {{ login_form.hidden_tag() }}
+                    <fieldset class="p-3">
+                        <legend>Log in to your Account</legend>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quisquam dignissimos repellendus, obcaecati ipsam voluptas.</p>
+
+                        <!-- Email -->
+                        <div class="form-group mb-3">
+                            {% if login_form.email.errors %}
+                            {{ login_form.email(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                            <div class="invalid-feedback">
+                                {% for error in login_form.email.errors %}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ login_form.email(class = "form-control form-control-lg bg-dark text-light", placeholder = "Email") }}
+                            {% endif %}
+                        </div>
+
+                        <!-- Password -->
+                        <div class="form-group mb-3">
+                            {% if login_form.password.errors %}
+                            {{ login_form.password(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+                            <div class="invalid-feedback">
+                                {% for error in login_form.password.errors %}
+                                <span>{{error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ login_form.password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Password") }}
+                            {% endif %}
+                        </div>
+
+                        <!-- SUBMIT -->
+                        <div class="row align-items-center mb-3">
+                            <div class="col from-group text-center">
+                                {{login_form.submit(class = "btn btn-outline-light")}}
+                            </div>
+                            <div class="col from-group text-center">
+                                {{ login_form.remember(class = "form-check-input") }}
+                                {{ login_form.remember.label(class = "form-check-input-label") }}
+                            </div>
+                        </div>
+                        <hr class="my-4">
+
+                        <div class="form-group align-items-center text-center mb-3">
+                            <p class="mb-3">Don't have an account?</p>
+                            <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#createAccountModal">Sign Up</button>
+                        </div>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

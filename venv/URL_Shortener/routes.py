@@ -29,5 +29,7 @@ def home():
 
 @app.route("/<string:allias>")
 def temp_url(allias):
-    url = URL.query.filter_by(allias = allias).first()
-    return redirect(url.long_URL)
+    if allias:
+        url = URL.query.filter_by(allias = allias).first()
+        return redirect(url.long_URL)
+    return redirect(url_for(home))

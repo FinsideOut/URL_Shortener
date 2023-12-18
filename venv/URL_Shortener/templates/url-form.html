@@ -1,0 +1,55 @@
+ <form method="POST" action>
+    {{ url_form.hidden_tag() }}
+    <fieldset class="p-3">
+        <legend>Shorten Your URL</legend>
+        <!-- LONG URL -->
+        <div class="form-group mb-3">
+            {% if url_form.long_URL.errors %}
+            {{ url_form.long_URL(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+            <div class="invalid-feedback">
+                {% for error in url_form.long_URL.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ url_form.long_URL(class = "form-control form-control-lg bg-dark text-light", placeholder = "Long URL") }}
+            {% endif %}
+
+        </div>
+
+        <!-- Allias URL -->
+        <div class="form-group mb-3">
+            {% if url_form.allias.errors %}
+            {{ url_form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
+            <div class="invalid-feedback">
+                {% for error in url_form.allias.errors %}
+                <span>{{error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ url_form.allias(class = "form-control form-control-lg bg-dark text-light", placeholder = "Alias Here") }}
+            {% endif %}
+        </div>
+        <!-- RECAPTCHA -->
+        <div class="row align-items-center mb-3">
+            <div class="col form-group text-center">
+                {{ url_form.submit(class = "btn btn-outline-light", onclick = "get_quote()") }}
+            </div>
+            <!-- SUBMIT -->
+            <div class="col form-group text-center">
+                {{url_form.recaptcha}}
+            </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="form-group">
+            <div class="form-control form-control-lg bg-dark text-light">
+                {% if short_url %}
+                {{short_url}}
+                {% else %}
+                Short URL
+                {% endif %}
+            </div>
+        </div>
+    </fieldset>
+</form>

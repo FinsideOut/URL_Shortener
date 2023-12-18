@@ -58,221 +58,15 @@
             <!-- MAIN GRID -->
             <div class="row">
                 <div class="col text-light bg-dark pd-3">
-                    <form method="POST" action>
-                        {{ url_form.hidden_tag() }}
-                        <fieldset class="p-3">
-                            <legend>Shorten Your URL</legend>
-                            <!-- LONG URL -->
-                            <div class="form-group mb-3">
-                                {% if url_form.long_URL.errors %}
-                                {{ url_form.long_URL(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                <div class="invalid-feedback">
-                                    {% for error in url_form.long_URL.errors %}
-                                    <span>{{error}}</span>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                {{ url_form.long_URL(class = "form-control form-control-lg bg-dark text-light", placeholder = "Long URL") }}
-                                {% endif %}
-
-                            </div>
-
-                            <!-- Allias URL -->
-                            <div class="form-group mb-3">
-                                {% if url_form.allias.errors %}
-                                {{ url_form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                <div class="invalid-feedback">
-                                    {% for error in url_form.allias.errors %}
-                                    <span>{{error}}</span>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                {{ url_form.allias(class = "form-control form-control-lg bg-dark text-light", placeholder = "Alias Here") }}
-                                {% endif %}
-                            </div>
-                            <!-- RECAPTCHA -->
-                            <div class="row align-items-center mb-3">
-                                <div class="col form-group text-center">
-                                    {{ url_form.submit(class = "btn btn-outline-light") }}
-                                </div>
-                                <!-- SUBMIT -->
-                                <div class="col form-group text-center">
-                                    {{url_form.recaptcha}}
-                                </div>
-                            </div>
-
-                            <!-- OUTPUT -->
-                            <div class="form-group">
-                                <div class="form-control form-control-lg bg-dark text-light">
-                                    {% if short_url %}
-                                    {{short_url}}
-                                    {% else %}
-                                    Short URL
-                                    {% endif %}
-                                </div>
-                            </div>
-
-                        </fieldset>
-                    </form>
-
+                    {% include "url-form.html" %}
                 </div>
                 <div class="col align-self-center text-center pd-3">
-
-                    <h2>{{quote}}</h2>
-                    <h3>{{author}}</h3>
-
+                    {% include "quote.html"%}
                 </div>
             </div>
         </div>
-
-        <!-- LOGIN Modal -->
-        <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <!-- Edit from here -->
-                <div class="modal-content text-light bg-dark">
-                    <div class="modal-body">
-                        <form method="POST" action>
-                            {{ login_form.hidden_tag() }}
-                            <fieldset class="p-3">
-                                <legend>Log in to your Account</legend>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quisquam dignissimos repellendus, obcaecati ipsam voluptas.</p>
-
-                                <!-- Email -->
-                                <div class="form-group mb-3">
-                                    {% if login_form.email.errors %}
-                                    {{ login_form.email(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in login_form.email.errors %}
-                                        <span>{{error}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% else %}
-                                    {{ login_form.email(class = "form-control form-control-lg bg-dark text-light", placeholder = "Email") }}
-                                    {% endif %}
-                                </div>
-
-                                <!-- Password -->
-                                <div class="form-group mb-3">
-                                    {% if login_form.password.errors %}
-                                    {{ login_form.password(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in login_form.password.errors %}
-                                        <span>{{error}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% else %}
-                                    {{ login_form.password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Password") }}
-                                    {% endif %}
-                                </div>
-
-                                <!-- SUBMIT -->
-                                <div class="row align-items-center mb-3">
-                                    <div class="col from-group text-center">
-                                        {{login_form.submit(class = "btn btn-outline-light")}}
-                                    </div>
-                                    <div class="col from-group text-center">
-                                        {{ login_form.remember(class = "form-check-input") }}
-                                        {{ login_form.remember.label(class = "form-check-input-label") }}
-                                    </div>
-                                </div>
-                                <hr class="my-4">
-
-                                <div class="form-group align-items-center text-center mb-3">
-                                    <p class="mb-3">Don't have an account?</p>
-                                    <button type="button" class="btn btn-outline-light" data-toggle="modal" data-target="#createAccountModal">Sign Up</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- SIGN UP Modal -->
-        <div class="modal fade" id="createAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <!-- Edit from here -->
-                <div class="modal-content text-light bg-dark">
-                    <div class="modal-body">
-                        <form method="POST" action>
-                            {{ register_form.hidden_tag() }}
-                            <fieldset class="p-3">
-                                <legend>Create an Account</legend>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, ipsum. Molestiae recusandae alias quasi architecto.</p>
-
-                                <!-- username -->
-                                <div class="form-group mb-3">
-                                    {% if register_form.username.errors %}
-                                    {{ register_form.username(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in register_form.username.errors %}
-                                        <span>{{error}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% else %}
-                                    {{ register_form.username(class = "form-control form-control-lg bg-dark text-light", placeholder = "Username") }}
-                                    {% endif %}
-                                </div>
-
-                                <!-- Email -->
-                                <div class="form-group mb-3">
-                                    {% if register_form.email.errors %}
-                                    {{ register_form.email(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in register_form.email.errors %}
-                                        <span>{{error}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% else %}
-                                    {{ register_form.email(class = "form-control form-control-lg bg-dark text-light", placeholder = "Email") }}
-                                    {% endif %}
-                                </div>
-
-                                <!-- Password -->
-                                <div class="form-group mb-3">
-                                    {% if register_form.password.errors %}
-                                    {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in register_form.password.errors %}
-                                        <span>{{error}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% else %}
-                                    {{ register_form.password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Password") }}
-                                    {% endif %}
-                                </div>
-
-                                <!-- Confirm Password -->
-                                <div class="form-group mb-3">
-                                    {% if register_form.confirm_password.errors %}
-                                    {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                                    <div class="invalid-feedback">
-                                        {% for error in register_form.confirm_password.errors %}
-                                        <span>{{error}}</span>
-                                        {% endfor %}
-                                    </div>
-                                    {% else %}
-                                    {{ register_form.confirm_password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Confirm Password") }}
-                                    {% endif %}
-                                </div>
-
-                                <!-- SUBMIT -->
-
-                                <div class="from-group text-center mb-3">
-                                    {{register_form.submit(class = "btn btn-outline-light")}}
-                                </div>
-                                <hr class="my-4">
-                                <div class="form-group align-items-center text-center mb-3">
-                                    <p class="mb-3">Already have an account?</p>
-                                    <button class="btn btn-outline-light">Log in</button>
-                                </div>
-                            </fieldset>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        {% include "login-modal.html"%}
+        {% include "register-modal.html" %}
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -286,5 +80,11 @@
             src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
+
+        <script>
+            // function get_quote(){
+            //     console.log("clicked!")
+            // }
+        </script>
     </body>
 </html>
