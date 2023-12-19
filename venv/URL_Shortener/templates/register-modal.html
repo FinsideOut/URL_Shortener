@@ -4,7 +4,7 @@
         <!-- Edit from here -->
         <div class="modal-content text-light bg-dark">
             <div class="modal-body">
-                <form method="POST" action>
+                <form method="POST" id="register_form" action>
                     {{ register_form.hidden_tag() }}
                     <fieldset class="p-3">
                         <legend>Create an Account</legend>
@@ -12,65 +12,37 @@
 
                         <!-- username -->
                         <div class="form-group mb-3">
-                            {% if register_form.username.errors %}
-                            {{ register_form.username(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                            <div class="invalid-feedback">
-                                {% for error in register_form.username.errors %}
-                                <span>{{error}}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ register_form.username(class = "form-control form-control-lg bg-dark text-light", placeholder = "Username") }}
-                            {% endif %}
+                            <input type="text" id="register_username" placeholder="Username" class="form-control form-control-lg bg-dark text-light">
+                            <!-- {{ register_form.username(class = "form-control form-control-lg bg-dark text-light", id = "register_username", placeholder = "Username") }} -->
                         </div>
 
                         <!-- Email -->
                         <div class="form-group mb-3">
-                            {% if register_form.email.errors %}
-                            {{ register_form.email(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                            <div class="invalid-feedback">
-                                {% for error in register_form.email.errors %}
-                                <span>{{error}}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ register_form.email(class = "form-control form-control-lg bg-dark text-light", placeholder = "Email") }}
-                            {% endif %}
+                            <input type="text" id="register_email" placeholder="Email" class="form-control form-control-lg bg-dark text-light">
+
+                            <!-- {{ register_form.email(class = "form-control form-control-lg bg-dark text-light", id = "register_email", placeholder = "Email") }} -->
                         </div>
 
                         <!-- Password -->
                         <div class="form-group mb-3">
-                            {% if register_form.password.errors %}
-                            {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                            <div class="invalid-feedback">
-                                {% for error in register_form.password.errors %}
-                                <span>{{error}}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ register_form.password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Password") }}
-                            {% endif %}
+                            <input type="text" id="register_password" placeholder="Password" class="form-control form-control-lg bg-dark text-light">
+
+                            <!-- {{ register_form.password(class = "form-control form-control-lg bg-dark text-light", id = "register_password", placeholder = "Password") }} -->
                         </div>
 
                         <!-- Confirm Password -->
                         <div class="form-group mb-3">
-                            {% if register_form.confirm_password.errors %}
-                            {{ form.allias(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                            <div class="invalid-feedback">
-                                {% for error in register_form.confirm_password.errors %}
-                                <span>{{error}}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ register_form.confirm_password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Confirm Password") }}
-                            {% endif %}
+                            <input type="text" id="register_confirm_password" placeholder="Confirm Password" class="form-control form-control-lg bg-dark text-light">
+
+                            <!-- {{ register_form.confirm_password(class = "form-control form-control-lg bg-dark text-light", id = "register_confirm_password", placeholder =
+                            "Confirm Password") }} -->
                         </div>
 
                         <!-- SUBMIT -->
-
                         <div class="from-group text-center mb-3">
                             {{register_form.submit(class = "btn btn-outline-light")}}
                         </div>
+
                         <hr class="my-4">
                         <div class="form-group align-items-center text-center mb-3">
                             <p class="mb-3">Already have an account?</p>

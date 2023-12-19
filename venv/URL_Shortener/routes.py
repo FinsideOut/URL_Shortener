@@ -10,6 +10,8 @@ def home():
     url_form = URL_Form()
     login_form = Login_Form()
     register_form = Register_Form()
+    if register_form.validate_on_submit():
+        print("Server Validation Passed")
     if url_form.validate_on_submit():
         if url_form.check_allias():
             short_url = shorten_url(url_form.allias.data)
@@ -31,5 +33,6 @@ def home():
 def temp_url(allias):
     if allias:
         url = URL.query.filter_by(allias = allias).first()
-        return redirect(url.long_URL)
-    return redirect(url_for(home))
+        if url:
+            return redirect(url.long_URL)
+    return render_template("404.html")
