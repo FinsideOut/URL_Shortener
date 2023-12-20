@@ -16,22 +16,38 @@ const register_inputs = [register_username, register_email, register_password, r
 
 register_form.addEventListener("submit", function check_form(event) {
     event.preventDefault();
-    var errors = [];
+
 
     // presence check for all fields
-    register_inputs.forEach(input => {
+    var errors = presence_check(register_inputs);
+
+    // emails
+    if (!validator.isEmail(register_email.value)) {
+        errors.push({ "input": register_email, "error": "Please enter a valid email address" })
+    } else {
+        // CHeck if email exists in db
+        console.log("fetch database check")
+    }
+    // passwords
+    if (!validator.isStrongPassword(register_password.value)) {
+        errors.push({ "input": register_password, "error": "Your password is not strong enough" })
+    }
+    if (register_password.value !== register_confirm_password.value) {
+        errors.push({ "input": register_confirm_password, "error": "Passwords must match exactly" })
+    }
+    write_errors(errors);
+})
+
+function presence_check(inputs) {
+    var errors = []
+    inputs.forEach(input => {
         if (input.value === "") {
             var error = { "input": input, "error": "This field is required" }
             errors.push(error);
         }
     })
-
-
-    var valid = validator.isEmail("hello")
-    console.log(valid)
-
-    write_errors(errors);
-})
+    return errors
+}
 
 function write_errors(errors) {
     // remove previous errors
