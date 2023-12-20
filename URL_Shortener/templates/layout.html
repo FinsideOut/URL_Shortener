@@ -31,11 +31,6 @@
                                 Sign In
                             </button>
                         </li>
-                        <li class="nav-item">
-                            <button type="button" class="btn btn-outline-light" onclick="Experiment">
-                                Expirement
-                            </button>
-                        </li>
                     </ul>
                 </div>
             </div>
@@ -58,7 +53,8 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 
-        <script src="../static/script.js"></script>
+        <script type="module" src="{{ url_for('static', filename='dist/bundle.js') }}"></script>
+        <!-- <script type="module" src="{{ url_for('static', filename='script.js') }}"></script> -->
 
     </body>
 </html>

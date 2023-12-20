@@ -1,3 +1,11 @@
+import validator from 'validator';
+
+const btn_switch_to_register = document.getElementById("switch_to_register_modal")
+const btn_switch_to_login = document.getElementById("switch_to_login_modal")
+const login_modal = document.getElementById("loginModal")
+const register_modal = document.getElementById("createAccountModal")
+
+
 const register_form = document.getElementById("register_form")
 const register_username = document.getElementById("register_username")
 const register_email = document.getElementById("register_email")
@@ -17,6 +25,11 @@ register_form.addEventListener("submit", function check_form(event) {
             errors.push(error);
         }
     })
+
+
+    var valid = validator.isEmail("hello")
+    console.log(valid)
+
     write_errors(errors);
 })
 
@@ -39,12 +52,13 @@ function write_errors(errors) {
 
 
 // Function to switch between modals
-function switch_to_create_account() {
-    $('#loginModal').modal('hide');
-    $('#createAccountModal').modal('show');
-}
-function switch_to_login() {
-    $('#createAccountModal').modal('hide');
-    $('#loginModal').modal('show');
-}
+btn_switch_to_register.addEventListener("click", function () {
+    $("#loginModal").modal("hide");
+    $("#createAccountModal").modal("show");
+});
+
+btn_switch_to_login.addEventListener("click", function () {
+    $("#createAccountModal").modal("hide");
+    $("#loginModal").modal("show");
+});
 
