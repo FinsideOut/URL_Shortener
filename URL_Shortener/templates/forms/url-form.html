@@ -1,0 +1,34 @@
+ <form id="url_form" method="POST" action>
+    {{ url_form.hidden_tag() }}
+    <fieldset class="p-3">
+        <legend>Shorten Your URL</legend>
+
+        <!-- LONG URL -->
+        <div class="form-group mb-3">
+            {{ url_form.long_URL(id = "url_url", class = "form-control form-control-lg bg-dark text-light", placeholder = "Long URL") }}
+        </div>
+
+        <!-- Allias URL -->
+        <div class="form-group mb-3">
+            {{ url_form.allias(id = "url_allias", class = "form-control form-control-lg bg-dark text-light", placeholder = "Alias Here") }}
+        </div>
+
+        <!-- RECAPTCHA -->
+        <div class="row align-items-center mb-3">
+            <div class="col form-group text-center">
+                {{ url_form.submit(class = "btn btn-outline-light") }}
+            </div>
+            <!-- SUBMIT -->
+            <div class="col form-group text-center">
+                {{url_form.recaptcha}}
+            </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="form-group">
+            <div id="url_result" class="form-control form-control-lg bg-dark text-light">
+                <!-- Content filled by flask and js -->
+            </div>
+        </div>
+    </fieldset>
+</form>

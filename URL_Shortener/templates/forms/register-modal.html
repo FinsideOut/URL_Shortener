@@ -1,10 +1,8 @@
- <!-- SIGN UP Modal -->
 <div class="modal fade" id="createAccountModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
-        <!-- Edit from here -->
         <div class="modal-content text-light bg-dark">
             <div class="modal-body">
-                <form method="POST" id="register_form" action>
+                <form method="POST" id="register_form" action nonvalidate>
                     {{ register_form.hidden_tag() }}
                     <fieldset class="p-3">
                         <legend>Create an Account</legend>
@@ -12,30 +10,30 @@
 
                         <!-- username -->
                         <div class="form-group mb-3">
-                            <input type="text" id="register_username" placeholder="Username" class="form-control form-control-lg bg-dark text-light">
-                            <!-- {{ register_form.username(class = "form-control form-control-lg bg-dark text-light", id = "register_username", placeholder = "Username") }} -->
+                            <!-- <input type="text" id="register_username" placeholder="Username" class="form-control form-control-lg bg-dark text-light"> -->
+                            {{ register_form.username(class = "form-control form-control-lg bg-dark text-light", id = "register_username", placeholder = "Username") }}
                         </div>
 
                         <!-- Email -->
                         <div class="form-group mb-3">
-                            <input type="text" id="register_email" placeholder="Email" class="form-control form-control-lg bg-dark text-light">
+                            <!-- <input type="text" id="register_email" placeholder="Email" class="form-control form-control-lg bg-dark text-light"> -->
 
-                            <!-- {{ register_form.email(class = "form-control form-control-lg bg-dark text-light", id = "register_email", placeholder = "Email") }} -->
+                            {{ register_form.email(class = "form-control form-control-lg bg-dark text-light", id = "register_email", placeholder = "Email") }}
                         </div>
 
                         <!-- Password -->
                         <div class="form-group mb-3">
-                            <input type="password" id="register_password" placeholder="Password" class="form-control form-control-lg bg-dark text-light">
+                            <!-- <input type="password" id="register_password" placeholder="Password" class="form-control form-control-lg bg-dark text-light"> -->
 
-                            <!-- {{ register_form.password(class = "form-control form-control-lg bg-dark text-light", id = "register_password", placeholder = "Password") }} -->
+                            {{ register_form.password(class = "form-control form-control-lg bg-dark text-light", id = "register_password", placeholder = "Password") }}
                         </div>
 
                         <!-- Confirm Password -->
                         <div class="form-group mb-3">
-                            <input type="password" id="register_confirm_password" placeholder="Confirm Password" class="form-control form-control-lg bg-dark text-light">
+                            <!-- <input type="password" id="register_confirm_password" placeholder="Confirm Password" class="form-control form-control-lg bg-dark text-light"> -->
 
-                            <!-- {{ register_form.confirm_password(class = "form-control form-control-lg bg-dark text-light", id = "register_confirm_password", placeholder =
-                            "Confirm Password") }} -->
+                            {{ register_form.confirm_password(class = "form-control form-control-lg bg-dark text-light", id = "register_confirm_password", placeholder =
+                            "Confirm Password") }}
                         </div>
 
                         <!-- SUBMIT -->
@@ -48,11 +46,8 @@
                             <p class="mb-3">Already have an account?</p>
                             <button type="button" class="btn btn-outline-light" id="switch_to_login_modal">Log in</button>
                         </div>
-
                     </fieldset>
-
                 </form>
-
             </div>
         </div>
     </div>

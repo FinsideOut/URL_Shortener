@@ -4,40 +4,23 @@
         <!-- Edit from here -->
         <div class="modal-content text-light bg-dark">
             <div class="modal-body">
-                <form method="POST" action>
+                <form method="POST" id="login_form" action>
                     {{ login_form.hidden_tag() }}
                     <fieldset class="p-3">
                         <legend>Log in to your Account</legend>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi quisquam dignissimos repellendus, obcaecati ipsam voluptas.</p>
-
                         <!-- Email -->
                         <div class="form-group mb-3">
-                            {% if login_form.email.errors %}
-                            {{ login_form.email(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                            <div class="invalid-feedback">
-                                {% for error in login_form.email.errors %}
-                                <span>{{error}}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ login_form.email(class = "form-control form-control-lg bg-dark text-light", placeholder = "Email") }}
-                            {% endif %}
+                            <!-- <input type="text" id="login_email" placeholder="Email" class="form-control form-control-lg bg-dark text-light"> -->
+
+                            {{ login_form.email(class = "form-control form-control-lg bg-dark text-light", id = "login_email", placeholder = "Email") }}
                         </div>
 
                         <!-- Password -->
                         <div class="form-group mb-3">
-                            {% if login_form.password.errors %}
-                            {{ login_form.password(class = "form-control form-control-lg is-invalid bg-dark text-light") }}
-                            <div class="invalid-feedback">
-                                {% for error in login_form.password.errors %}
-                                <span>{{error}}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ login_form.password(class = "form-control form-control-lg bg-dark text-light", placeholder = "Password") }}
-                            {% endif %}
+                            <!-- <input type="password" id="login_password" placeholder="Password" class="form-control form-control-lg bg-dark text-light"> -->
+                            {{ login_form.password(class = "form-control form-control-lg bg-dark text-light", id = "login_password", placeholder = "Password") }}
                         </div>
-
                         <!-- SUBMIT -->
                         <div class="row align-items-center mb-3">
                             <div class="col from-group text-center">

@@ -2,30 +2,17 @@
 
 {% block content %}
 <div class="container">
-    <!-- for testing purposes -->
-    <div class="row">
-        <div class="col">
-            {% with messages = get_flashed_messages(with_categories = true) %}
-            {% if messages %}
-            {% for category, message in messages %}
-            <div class="alert alert-{{category}}">
-                {{ message }}
-            </div>
-            {% endfor %}
-            {% endif %}
-            {% endwith %}
-        </div>
-    </div>
     <div class="row">
         <div class="col text-light bg-dark pd-3">
-            {% include "url-form.html" %}
+            {% include "./forms/url-form.html" %}
         </div>
         <div class="col align-self-center text-center pd-3">
-            {% include "quote.html"%}
+            <h2 id="quote">{{quote}}</h2>
+            <h3 id="author">{{author}}</h3>
         </div>
     </div>
 </div>
-{% include "login-modal.html"%}
-{% include "register-modal.html" %}
+{% include "./forms/login-modal.html"%}
+{% include "./forms/register-modal.html" %}
 
 {% endblock content%}
