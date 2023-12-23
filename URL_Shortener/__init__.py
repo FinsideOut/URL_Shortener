@@ -27,8 +27,12 @@ gpt_client = OpenAI()
 db = SQLAlchemy(app)
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
-# login_manager.login_view = "/" # redirects to home if attempt to access restricted pages
+login_manager.login_view = "main.home" # redirects to home if attempt to access restricted pages
 # login_manager.login_message_category = "info" # info = bootstrap class
 
-from URL_Shortener import routes
+from URL_Shortener.users.routes import users
+from URL_Shortener.main.routes import main
+app.register_blueprint(main)
+app.register_blueprint(users)
+
 

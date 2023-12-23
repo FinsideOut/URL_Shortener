@@ -14,4 +14,4 @@
 - Flask Login Manager
 - - pip install flask-login
 - Open Ai
-- pip install openai
+- - pip install openai
