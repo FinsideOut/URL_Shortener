@@ -2,6 +2,25 @@
 node_modules/
 
 # Ignore virtual environment
-__pycache__/
 venv/
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.tmp
+
+# Ignore compiled code and binaries
 *.pyc
+*.pyo
+*.pyd
+__pycache__/
+*.class
+target/
+*.jar
+
+# Ignore dependency directories or files
+package-lock.json
+
+
+# Ignore personal configurations
+webpack.config.js

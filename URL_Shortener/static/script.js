@@ -1,4 +1,4 @@
-import validator from 'validator';
+// import validator from 'validator';
 
 const btn_switch_to_register = document.getElementById("switch_to_register_modal")
 const btn_switch_to_login = document.getElementById("switch_to_login_modal")
