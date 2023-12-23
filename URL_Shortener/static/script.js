@@ -17,8 +17,7 @@ const login_email = document.getElementById("login_email")
 const login_password = document.getElementById("login_password")
 const login_inputs = [login_email, login_password];
 
-console.log("script running")
-
+// URL FORM
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("url_form").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -44,6 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// REGISTER FORM
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("register_form").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log("Success!")
                     window.location.href = "/";
                 } else {
                     write_errors(this, data.errors);
@@ -65,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+// LOGING FORM
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("login_form").addEventListener("submit", function (event) {
         event.preventDefault();
@@ -75,8 +75,8 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
+                console.log(data)
                 if (data.success) {
-                    console.log("Success!")
                     window.location.href = "/";
                 } else {
                     write_errors(this, data.errors);
@@ -93,8 +93,6 @@ function write_errors(form, errors) {
         var value = errors[key];
         if (value.length !== 0) {
             var input = document.getElementById(form.id.split("_")[0] + "_" + key);
-            console.log(form.id.split("_")[0] + "_" + key)
-            console.log(input)
             input.classList.add("is-invalid");
             value.forEach(item => {
                 var new_error = document.createElement('div');

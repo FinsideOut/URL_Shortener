@@ -3,6 +3,8 @@ node_modules/
 
 # Ignore virtual environment
 venv/
+.venv/
+
 
 
 # Ignore logs and temporary files

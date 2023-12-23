@@ -1,29 +1,34 @@
-from flask import render_template, redirect, flash, request, jsonify
+from flask import render_template, redirect, flash, request, jsonify, url_for
 from URL_Shortener import app, db, bcrypt
 from URL_Shortener.models import URL, User
 from URL_Shortener.forms import URL_Form, Login_Form, Register_Form
 from URL_Shortener.utils import ask_gpt, shorten_url
+from flask_login import login_user, logout_user, current_user, login_required
+from URL_Shortener.utils import build_logger
 
-
+logger = build_logger()
 
 @app.route("/",methods = ["GET", "POST"])
 def home():
     register_form = Register_Form()
     login_form = Login_Form()
     url_form = URL_Form()
+    return render_template("index.html", title = "Home", url_form = url_form, login_form = login_form, register_form = register_form)
 
-    if url_form.validate_on_submit():
-        # if url_form.check_allias():
 
-        #quote = "Test quote"
-        #author = "Me"
-        #flash(f"{quote} - {author}", "success")
-        return render_template("index.html", title = "Home", url_form = url_form, login_form = login_form, register_form = register_form, short_url = short_url, quote = quote, author = author)
-    # if login_form.validate_on_submit():
-    #     return render_template("index.html", title = "Home", url_form = url_form, login_form = login_form, register_form = register_form, short_url = short_url, quote = quote, author = author)
-        
+@app.route("/logout")
+@login_required
+def logout():
+    logger.warning(f"{current_user.username} logged OUT")
+    logout_user()
+    return redirect(url_for("home"))
 
-    return render_template("index.html", title = "Home", url_form = url_form, login_form = login_form,register_form = register_form)
+@app.route("/user_links")
+@login_required
+def user_links():
+    return render_template("user-links.html")
+
+
 
 @app.route('/url_submit', methods=['POST'])
 def url_submit():
@@ -63,7 +68,11 @@ def register_submit():
 def login_submit():
     form = Login_Form(request.form)
     if form.validate_on_submit():
-        return jsonify(success=True)
+        user = User.query.filter_by(email = form.email.data).first()
+        login_user(user, remember = form.remember.data)
+        logger.warning(f"{current_user.username} logged IN")
+
+        return jsonify(success=True, username = user.username)
     else:
         # Return a response with errors if validation fails
         errors = {field.name: field.errors for field in form}

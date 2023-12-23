@@ -26,5 +26,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(120), unique = True, nullable = False)
     password = db.Column(db.String(60), nullable = False)
     urls = db.relationship("URL", backref = "owner", lazy = True)
+
+    # must be there to allow "login_user()" to work
+    def get_id(self):
+        return str(self.user_id)
     
 
