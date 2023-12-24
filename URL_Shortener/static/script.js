@@ -1,21 +1,18 @@
 // import validator from 'validator';
 
-const btn_switch_to_register = document.getElementById("switch_to_register_modal")
-const btn_switch_to_login = document.getElementById("switch_to_login_modal")
-const login_modal = document.getElementById("loginModal")
-const register_modal = document.getElementById("createAccountModal")
 
-const register_form = document.getElementById("register_form")
-const register_username = document.getElementById("register_username")
-const register_email = document.getElementById("register_email")
-const register_password = document.getElementById("register_password")
-const register_confirm_password = document.getElementById("register_confirm_password")
-const register_inputs = [register_username, register_email, register_password, register_confirm_password];
 
-const login_form = document.getElementById("login_form")
-const login_email = document.getElementById("login_email")
-const login_password = document.getElementById("login_password")
-const login_inputs = [login_email, login_password];
+// const register_form = document.getElementById("register_form")
+// const register_username = document.getElementById("register_username")
+// const register_email = document.getElementById("register_email")
+// const register_password = document.getElementById("register_password")
+// const register_confirm_password = document.getElementById("register_confirm_password")
+// const register_inputs = [register_username, register_email, register_password, register_confirm_password];
+
+// const login_form = document.getElementById("login_form")
+// const login_email = document.getElementById("login_email")
+// const login_password = document.getElementById("login_password")
+// const login_inputs = [login_email, login_password];
 
 // URL FORM
 document.addEventListener("DOMContentLoaded", function () {
@@ -29,10 +26,13 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    console.log("Success!")
-                    // window.location.href = "/";
+
                     document.getElementById("quote").textContent = data.quote;
                     document.getElementById("author").textContent = data.author;
+
+                    // document.getElementById("reCaptcha").remove();
+                    document.getElementById("url_submit").remove();
+                    document.getElementById("output").classList.remove("d-none");
                     document.getElementById("url_result").textContent = data.result;
 
                 } else {
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
         })
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data.success) {
                     window.location.href = "/";
                 } else {
@@ -87,8 +86,11 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function write_errors(form, errors) {
+    // remove previous errors
     form.querySelectorAll(".invalid-feedback").forEach(element => element.remove());
     form.querySelectorAll(".is-invalid").forEach(element => element.classList.remove("is-invalid"));
+
+    // loop through new errors
     Object.keys(errors).forEach(function (key) {
         var value = errors[key];
         if (value.length !== 0) {
@@ -106,6 +108,11 @@ function write_errors(form, errors) {
 }
 
 // Function to switch between modals
+const btn_switch_to_register = document.getElementById("switch_to_register_modal")
+const btn_switch_to_login = document.getElementById("switch_to_login_modal")
+const login_modal = document.getElementById("loginModal")
+const register_modal = document.getElementById("createAccountModal")
+
 btn_switch_to_register.addEventListener("click", function () {
     $("#loginModal").modal("hide");
     $("#createAccountModal").modal("show");
@@ -116,7 +123,21 @@ btn_switch_to_login.addEventListener("click", function () {
     $("#loginModal").modal("show");
 });
 
+// $(document).ready(function () {
+//     $('.selectpicker').selectpicker();
+// });
 
+// document.addEventListener('DOMContentLoaded', function () {
+//     var dropdown = document.getElementById('url_lifespan');
+
+//     dropdown.addEventListener('change', function () {
+//         if (dropdown.value === '') {
+//             dropdown.options[0].disabled = true;
+//         } else {
+//             dropdown.options[0].disabled = false;
+//         }
+//     });
+// });
 // login_form.addEventListener("submit", async (event) => {
 //     console.log("clicked")
 //     event.preventDefault();

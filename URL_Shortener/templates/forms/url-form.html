@@ -5,29 +5,41 @@
 
         <!-- LONG URL -->
         <div class="form-group mb-3">
-            {{ url_form.long_URL(id = "url_url", class = "form-control form-control-lg bg-dark text-light", placeholder = "Long URL") }}
+            {{url_form.long_URL.label}}
+            {{ url_form.long_URL(id = "url_long_URL", class = "form-control form-control-lg bg-dark text-light", placeholder = long_example) }}
         </div>
 
         <!-- Allias URL -->
         <div class="form-group mb-3">
-            {{ url_form.allias(id = "url_allias", class = "form-control form-control-lg bg-dark text-light", placeholder = "Alias Here") }}
+            {{url_form.allias.label}}
+            {{ url_form.allias(id = "url_allias", class = "form-control form-control-lg bg-dark text-light", placeholder = allias_example) }}
+        </div>
+
+        <!-- Lifespan -->
+        <div class="form-group mb-3">
+            {{url_form.life_span.label}}
+            {{ url_form.life_span(id = "url_lifespan", class = "form-control form-control-lg bg-dark text-light") }}
+
         </div>
 
         <!-- RECAPTCHA -->
-        <div class="row align-items-center mb-3">
-            <div class="col form-group text-center">
-                {{ url_form.submit(class = "btn btn-outline-light") }}
-            </div>
+        <div class="form-group mb-3">
+            <!-- <div id="url_submit" class="form-group text-center"> -->
+            {{ url_form.submit(class = "form-control form-control-lg btn btn-outline-light", id="url_submit") }}
+            <!-- </div> -->
             <!-- SUBMIT -->
-            <div class="col form-group text-center">
+            <!-- <div id="reCaptcha" class="col form-group text-center">
                 {{url_form.recaptcha}}
-            </div>
+            </div> -->
         </div>
 
         <!-- OUTPUT -->
-        <div class="form-group">
-            <div id="url_result" class="form-control form-control-lg bg-dark text-light">
-                <!-- Content filled by flask and js -->
+        <div id="output" class="form-group d-none">
+            <label for="url_result">Your new link:</label>
+            <div id="url_result" class="form-control form-control-lg bg-dark text-light mb-3"></div>
+            <div class="form-group d-flex justify-content-evenly">
+                <button class="btn btn-outline-light">Share</button>
+                <a class="btn btn-outline-light" href="{{url_for('main.home')}}">Get Another</a>
             </div>
         </div>
     </fieldset>

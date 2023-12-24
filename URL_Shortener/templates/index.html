@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<div class="container">
-    <div class="row">
-        <div class="col text-light bg-dark pd-3">
+<div class="container-fluid vh-90">
+    <div class="row d-flex align-items-center h-100">
+        <div class="col-md col-4 text-light bg-dark p-3 m-3 h-100 mx-auto">
             {% include "./forms/url-form.html" %}
         </div>
-        <div class="col align-self-center text-center pd-3">
+        <div class="col-md col-4 text-light bg-dark align-self-center text-center p-3 m-3 h-100 mx-auto">
             <h2 id="quote">{{quote}}</h2>
             <h3 id="author">{{author}}</h3>
         </div>

@@ -1,5 +1,49 @@
 {% extends "layout.html" %}
 
 {% block content%}
-<h1>My Stuff</h1>
+
+<div class="container">
+    <h2>My Links</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Short URL</th>
+                <th scope="col">Active</th>
+                <th scope="col">Expiry Date</th>
+                <th scope="col">Long URL</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for url in urls %}
+            {% if url.active %}
+            <tr>
+                <th scope="row"><a href="{{url_for('main.temp_url', allias = url.allias)}}">{{url.short_URL}}</a></th>
+                <td class="text-success"> {{url.active}}</td>
+                <td>{{url.date_expired.strftime("%Y-%m-%d")}}</td>
+                <td>{{url.long_URL}}</td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{url_for('users.extend', id = url.URL_id)}}">Extend</a>
+                    <a class="btn btn-outline-dark" href="{{url_for('users.deactivate', id = url.URL_id)}}">Deactivate</a>
+
+                </td>
+            </tr>
+            {% else %}
+            <tr>
+                <th class="text-muted" scope="row">{{url.short_URL}}</th>
+                <td class="text-danger">{{url.active}}</td>
+                <td>{{url.date_expired.strftime("%Y-%m-%d")}}</td>
+                <td>{{url.long_URL}}</td>
+                <td>
+                    <a class="btn btn-outline-dark" href="{{url_for('users.reactivate', id = url.URL_id)}}">Reactivate</a>
+                    <a class="btn btn-outline-dark" href="{{url_for('users.delete', id = url.URL_id)}}">Delete</a>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+
+            <!-- Add more rows as needed -->
+        </tbody>
+    </table>
+</div>
 {% endblock content%}

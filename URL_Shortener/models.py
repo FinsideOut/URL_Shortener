@@ -8,11 +8,15 @@ class URL(db.Model):
     long_URL = db.Column(db.String(300), nullable = False)
     allias = db.Column(db.String(20), unique = True, nullable = False)
     short_URL = db.Column(db.String(20), unique = True, nullable = False)
-    date_added = db.Column(db.DateTime, nullable = False, default = datetime.utcnow())
+    date_added = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+    date_expired = db.Column(db.DateTime, nullable = False, default = datetime.utcnow)
+
+    life_span = db.Column(db.Integer, nullable = False, default = 3)
+    active = db.Column(db.Boolean, nullable = False, default = True)
     user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"), nullable = True)
 
     def __repr__(self):
-        return f"{self.URL_id}, {self.long_URL}, {self.allias}, {self.short_URL}, {self.date_added}, {self.user_id}"
+        return f"ID:{self.URL_id}, LONG:{self.long_URL}, ALLIAS:{self.allias}, SHORT:{self.short_URL}, DATE:{self.date_added}, LIFESPAN:{self.life_span} ACTIVE:{self.active} USER_ID:{self.user_id}"
     
 
 #handles user login verification for you??
@@ -31,4 +35,6 @@ class User(db.Model, UserMixin):
     def get_id(self):
         return str(self.user_id)
     
+    def __repr__(self):
+        return f"USER(user_id={self.user_id}, USERNAME='{self.username}', EMAIL='{self.email}')"
 
