@@ -45,6 +45,8 @@ def temp_url(allias):
             if url.date_expired <= datetime.utcnow():
                 url.active = False
                 db.session.commit()
+                if url.date_expired + timedelta(days = 7) <= datetime.utcnow():
+                    db.session.delete(url)
             else:
                 return redirect(url.long_URL)
     return render_template("404.html")
@@ -54,12 +56,19 @@ def temp_url(allias):
 def user_links():
     #next line DOES work, but the datedatimes of all posts are the same!?
     urls = URL.query.filter_by(user_id = current_user.user_id).order_by(URL.date_expired.desc()).all()
-    for url in urls:           
+    for url in urls:        
         if url.date_expired <= datetime.utcnow():
-            logger.info("URL UPDATED")
             url.active = False
+        if url.date_expired + timedelta(days = 7) <= datetime.utcnow():
+            db.session.delete(url)
+            
+    warning = False
+    for url in urls:
+        if url.active == False:
+            warning = True
+            break
     db.session.commit()
-    return render_template("user-links.html", urls = urls)
+    return render_template("user-links.html", urls = urls, warning = warning)
 
 @links.route("/deactivate/<string:id>")
 @login_required
