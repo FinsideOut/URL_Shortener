@@ -31,8 +31,10 @@ login_manager = LoginManager(app)
 # login_manager.login_message_category = "info" # info = bootstrap class
 
 from URL_Shortener.users.routes import users
+from URL_Shortener.links.routes import links
 from URL_Shortener.main.routes import main
 app.register_blueprint(users)
+app.register_blueprint(links)
 app.register_blueprint(main)
 
 
